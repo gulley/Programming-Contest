@@ -1,4 +1,4 @@
-function [result,t] = scorer()
+function [result,computeTime] = testSolver()
     testsuite = load('testsuite.mat');
     tests = testsuite.tests;
     
@@ -21,11 +21,10 @@ function [result,t] = scorer()
 
         if results(i) < 0
             result = -1;
-            t = 0;
+            computeTime = 0;
             return
         end
         
     end
-    t = seconds(datetime("now") - dt);
-    result = sum(results);
-end
+    computeTime = seconds(datetime("now") - dt);
+ 

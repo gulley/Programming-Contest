@@ -1,3 +1,4 @@
+% Generate tests
 
 tmax = 500;
 tests = struct([]);
