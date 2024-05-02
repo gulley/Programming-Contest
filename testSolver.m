@@ -26,5 +26,6 @@ function [result,computeTime] = testSolver()
         end
         
     end
+    result = sum(results);
     computeTime = seconds(datetime("now") - dt);
  

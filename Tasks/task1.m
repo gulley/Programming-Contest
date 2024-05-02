@@ -9,16 +9,16 @@ tt = timetable(t, result, computeTime, score, commit);
 
 ttAll = readtimetable("allSolvers.csv");
 ttAll = [ttAll; tt];
-writetimetable(ttAll)
+writetimetable(ttAll,"allSolvers.csv")
 
-ttLeaders = readtable("leaders.csv");
+ttLeaders = readtimetable("leaders.csv");
 bestScore = min(ttLeaders.score);
 if score < bestScore
     ttLeaders = [ttLeaders; tt];
-    writetimetable(ttLeaders)
+    writetimetable(ttLeaders,"leaders.csv")
 end
 
-function calculateScore(result,computeTime)
+function score = calculateScore(result,computeTime)
     % The score will ultimately be based on both the result and the
     % computeTime. For now we'll just do a simple stand-in calculation.
 
