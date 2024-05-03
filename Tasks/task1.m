@@ -11,3 +11,4 @@ ttAll = readtimetable("allSolvers.csv");
 ttAll = [ttAll; tt];
 writetimetable(ttAll,"allSolvers.csv")
 
+matlab.internal.liveeditor.executeAndSave('report.mlx')
