@@ -23,7 +23,7 @@ jobs:
       - name: Run custom testing procedure
         uses: matlab-actions/run-command@v2
         with:
-          command: disp('Running my task!'); addpath('Tasks'); task1;
+          command: disp('Running my task!'); addpath('Tasks'); task1("${{github.sha}}");
 
       # Commit and push the result of the MATLAB task
       - name: Commit and push changes
