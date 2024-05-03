@@ -11,10 +11,3 @@ ttAll = readtimetable("allSolvers.csv");
 ttAll = [ttAll; tt];
 writetimetable(ttAll,"allSolvers.csv")
 
-ttLeaders = readtimetable("leaders.csv");
-bestScore = min(ttLeaders.score);
-if score < bestScore
-    ttLeaders = [ttLeaders; tt];
-    writetimetable(ttLeaders,"leaders.csv")
-end
-

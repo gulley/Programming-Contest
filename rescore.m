@@ -1,5 +1,5 @@
 % Re-score
-fname = "leaders.csv";
+fname = "allSolvers.csv";
 ld = readtimetable(fname);
 ld.score = calculateScore(ld.result,ld.computeTime);
 ld
