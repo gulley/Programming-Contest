@@ -29,3 +29,4 @@ function [result,computeTime] = testSolver()
     result = sum(results);
     computeTime = seconds(datetime("now") - dt);
  
+end
