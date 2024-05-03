@@ -5,7 +5,7 @@ function ix = solver(x,lim)
 
     rng(1)
 
-    for i = 1:20
+    for i = 1:30
         rp = randperm(length(x));
         xcs = cumsum(x(rp));
         ix = find(xcs < lim);
