@@ -1,23 +1,32 @@
 
+# Contest Report
 ```matlab
-ld = readtimetable("allSolvers.csv");
+% Read in the list of all solvers
+solvers = readtimetable("allSolvers.csv");
 
 % Get rid of bad entries
-ix = isinf(ld.score);
-ld(ix,:) = []
+% The score may be infinite or negative. Neither is a good state.
+ix = isinf(solvers.score)|(solvers.result<0);
+solvers(ix,:) = [];
+```
+
+Here is the list of all the solvers
+
+```matlab
+solvers
 ```
 | |t|result|computeTime|score|author|commit|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|1|06-May-2024 21:06:17|-1|0|-5|'gulley'|'75300ae7d493637041100036e5d3688fab0669b4'|
+|1|06-May-2024 21:52:36|26.0168|0.3441|164.4961|'gulley'|'c51b2fcf7b51ebe382d55723d14c15474980b116'|
 
 ```matlab
-plot(ld.computeTime,ld.result,"-o")
+plot(solvers.computeTime,solvers.result,"-o")
 ```
 
 ![figure_0.png](report_media/figure_0.png)
 
 ```matlab
-plot(ld.t,ld.result,"-o")
+plot(solvers.t,solvers.result,"-o")
 ```
 
 ![figure_1.png](report_media/figure_1.png)
