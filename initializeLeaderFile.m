@@ -1,11 +1,18 @@
 % Initialize CSV file
+% The headings for the allSolvers.csv file are
+% - t
+% - result
+% - computeTime
+% - score
+% - author
+% - commit hash
+
+t = datetime("now");
 result = inf;
 computeTime = inf;
 score = inf;
-commit = 0;
-t = datetime("now");
+author = "NA";
+commit = "NA";
 
-ttLeaders = timetable(t, result, computeTime, score, commit);
-writetimetable(ttLeaders,"leaders.csv")
-
+ttLeaders = timetable(t, result, computeTime, score, author, commit);
 writetimetable(ttLeaders,"allSolvers.csv")
