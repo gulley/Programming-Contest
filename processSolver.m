@@ -1,11 +1,13 @@
 function processSolver(commitActor,commitHash)
 
+    t = datetime("now");
     [result,computeTime] = testSolver();
     score = calculateScore(result,computeTime);
-    t = datetime("now");
+    author = commitActor;
+    commit = commitHash;
 
     % Make the new table that correponds to the most recently tested file
-    tt = timetable(t, result, computeTime, score, commitActor, commitHash);
+    tt = timetable(t, result, computeTime, score, author, commit);
 
     ttAll = readtimetable("allSolvers.csv");
     ttAll = [ttAll; tt];
