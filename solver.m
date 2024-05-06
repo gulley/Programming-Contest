@@ -1,8 +1,8 @@
 function ix = solver(x,lim)
     % Try a bunch of random permutations
 
-    ix = 1;
-    
+    ix = find(x<lim,1);
+
     % remBest = inf;
     % 
     % rng(1)
