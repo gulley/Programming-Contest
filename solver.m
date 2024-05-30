@@ -1,13 +1,21 @@
 function ix = solver(x, lim)
-    bestSum = 0;
-    ix = [];
     n = length(x);
-    for i = 1:2^n-1
-        mask = bitget(i, 1:n);
-        currentSum = sum(x(mask));
-        if currentSum > bestSum && currentSum <= lim
-            bestSum = currentSum;
-            ix = find(mask);
+    DP = zeros(n+1, lim+1);
+    for i = 1:n
+        for w = 1:lim
+            if x(i) <= w
+                DP(i+1, w) = max(x(i) + DP(i, w-x(i)), DP(i, w));
+            else
+                DP(i+1, w) = DP(i, w);
+            end
+        end
+    end
+    ix = [];
+    w = lim;
+    for i = n:-1:1
+        if DP(i+1, w) ~= DP(i, w)
+            ix = [i, ix];
+            w = w - x(i);
         end
     end
 end
