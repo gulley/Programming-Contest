@@ -1,21 +1,29 @@
 function ix = solver(x, lim)
-    n = length(x);
-    DP = zeros(n+1, lim+1);
-    for i = 1:n
-        for w = 1:lim
-            if x(i) <= w
-                DP(i+1, w) = max(x(i) + DP(i, w-x(i)), DP(i, w));
-            else
-                DP(i+1, w) = DP(i, w);
+    [xSorted, originalIndices] = sort(x, 'descend');
+    
+    remBest = inf;
+    ixBest = [];
+
+    rng(1); % For reproducibility
+
+    numIterations = max(15, ceil(length(x) / 10));
+    
+    for i = 1:numIterations
+        rp = randperm(length(xSorted));
+        xcs = cumsum(xSorted(rp));
+        ix = find(xcs <= lim, 1, 'last');
+        if ~isempty(ix)
+            ixTest = originalIndices(rp(1:ix));
+            rem = lim - sum(x(ixTest));
+            if rem < remBest
+                ixBest = ixTest;
+                remBest = rem;
+                if remBest == 0
+                    break;
+                end
             end
         end
     end
-    ix = [];
-    w = lim;
-    for i = n:-1:1
-        if DP(i+1, w) ~= DP(i, w)
-            ix = [i, ix];
-            w = w - x(i);
-        end
-    end
+
+    ix = ixBest;
 end
